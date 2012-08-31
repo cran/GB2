@@ -4,27 +4,24 @@
 \alias{main.emp}
 \alias{mlfit.gb2}
 \title{
-Fitting the GB2 by the Method of Maximum Likelihood Estimation
+Fitting the GB2 by the Method of Maximum Likelihood Estimation and Comparison of the Fitted Indicators with the Empirical Indicators
 }
 \description{
-Performs maximum likelihood estimation through the general-purpose optimisation function \code{optim} from package \code{stats}.
+The function \code{mlfit.gb2} makes a call to \code{ml.gb2} and \code{profml.gb2}. Estimates of the GB2 parameters are calculated using maximum likelihood estimation based on the full and profile log-likelihoods. Empirical estimates of the set of primary indicators of poverty and social inclusion are calculated using the function \code{main.emp} (see package \code{laeken}) and these estimates
+are compared with the indicators calculated with the GB2 fitted parameters using the function \code{\link{main.gb2}}.
 }
 \usage{
-main.emp(z, w=1)
-mlfit.gb2(z, w=1) 
+main.emp(z, w=rep(1, length(z)))
+mlfit.gb2(z, w=rep(1, length(z))) 
 }
 \arguments{
-  \item{z}{a numeric vector; in general, the income values.}
-  \item{w}{a numeric vector of the same length as \code{z}; the sampling weights. If not available, the function should be called only with its first argument (the weights are set to 1).}
-}
-\details{
-The function makes a call to \code{ml.gb2} and \code{profml.gb2}. Estimates of the GB2 parameters are calculated .
-Also the primary Laeken indicators of the fitted parameters and the empirical estimates of the indicators (see package \code{laeken}) are calculated.
+  \item{z}{numeric; vector of data values. Should not contain missing values. Should not contain missing values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1. Should not contain missing values.}
 }
 \value{
-A list containing three different objects. The first is a data frame with the values of the fitted parameters for the full log-likelihood and the profile log-likelihood, the values of the two likelihoods, 
-the values of the estimated indicators under the GB2 and the values of the empirical estimates of the indicators. The second and third objects are, respectively, the fit using the full log-likelihood and the fit using
-the profile log-likelihhod.
+A list containing three different objects. The first is a data frame with the values of the fitted parameters for the full log-likelihood and the profile log-likelihood, 
+the values of the two likelihoods, the values of the GB2 estimates of the indicators and the values of the empirical estimates of the indicators. The second and third objects are, respectively,
+the fit using the full log-likelihood and the fit using the profile log-likelihood.
 }
 \seealso{
 \code{\link[stats]{optim}} , \code{\link{ml.gb2}}, \code{\link{profml.gb2}}
@@ -57,7 +54,7 @@ w   <- d$w[d$inc > 0]
 # ML fit
 m1 <- mlfit.gb2(inc,w)
 
-# Results
+# GB2 fitted parameters and indicators through maximum likelihood estimation
 m1[[1]]
 # The fit using the full log-likelihood
 m1[[2]]

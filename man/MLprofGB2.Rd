@@ -5,17 +5,16 @@
 \title{
 Maximum Likelihood Estimation of the GB2 Based on the Profile Log-likelihood
 }
-\description{
-\code{profml.gb2} performs maximum likelihood estimation based on the profile log-likelihood through the general-purpose optimization function 
-\code{optim} from package \code{stats}.     
+\description{\code{profml.gb2} performs maximum likelihood estimation based on the profile log-likelihood through the general-purpose optimisation function \code{optim} from package \code{stats}.
 }
 \usage{
-profml.gb2(z, w=1, method=1) 
+profml.gb2(z, w=rep(1, length(z)), method=1, hess = FALSE) 
 }
 \arguments{
-  \item{z}{vector of data values.}
-  \item{w}{corresponding weights.}
-  \item{method}{the method to be used for \code{optim}. By default, the used method is BFGS. If \code{method = }2, methods BFGS and L-BFGS-B are used.}
+  \item{z}{numeric; vector of data values. Should not contain missing values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{method}{numeric; the method to be used by \code{optim}. By default, code{method = }1 and the used method is BFGS. If \code{method = }2, method L-BFGS-B is used.}
+  \item{hess}{logical; By default, \code{hess = FALSE}, the hessian matrix is not calculated.}
 }
 \details{
 Two methods are considered: BFGS and L-BFGS-B (see \code{optim} documentation for more details). Initial values of the parameters to be optimized over (\eqn{a} and \eqn{b}) 
@@ -23,14 +22,15 @@ are given from the Fisk distribution.  The function to be maximized by \code{opt
 and the gradient is equal to the negative of the scores (\code{\link{profscores.gb2}}).
 }
 \value{
-A list with 1 or 2 arguments: \code{opt1} output of BFGS fit and \code{opt2} output of L-BFGS fit. Further values are given by the values of \code{\link{optim}}.
+A list with 1 argument: \code{opt1} for the output of the BFGS fit or \code{opt2} for the output of the L-BFGS fit. Further values are given by the values of \code{optim}.
 }
 \references{
- Graf, M. and Nedyalkova, D. (2010)
- The Generalized Beta Distribution of the Second Kind as an Income Distribution: Properties, Likelihood and Estimation.
- \emph{working paper}, SFSO.
+ Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
+ Indicators of Poverty and Social Exclusion.
+ \emph{Technical report}, AMELI-Project.
 }
-\seealso{\code{\link{optim}} for the general-purpose optimization and \code{link{ml.gb2}} for the full log-likelihood.
+\seealso{\code{\link{optim}} for the general-purpose optimization, \code{link{ml.gb2}} for the fit using the full log-likelihood and \code{\link{fisk}} for the Fisk distribution.
 }
 \author{
 Monique Graf
@@ -77,4 +77,5 @@ indice <- round(main.emp(inc,w), digits=3)
 \dontrun{plotsML.gb2(inc,ap,bp,pp,qp,w)}
 }
 \keyword{distribution}
+\encoding{latin1}
 

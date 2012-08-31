@@ -23,11 +23,11 @@ sl.gb2(shape2, shape3)
 kl.gb2(shape2, shape3)
 }
 \arguments{
-  \item{x}{vector of quantiles.}
+  \item{x}{numeric; vector of quantiles.}
   \item{k}{numeric; order of the moment.}
-  \item{shape1}{positive parameter.}
-  \item{scale}{positive parameter.}
-  \item{shape2, shape3}{positive parameters of the Beta distribution.}
+  \item{shape1}{numeric; positive parameter.}
+  \item{scale}{numeric; positive parameter.}
+  \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
 }
 \details{
 Let \eqn{X} be a random variable following a GB2 distribution with parameters \code{shape1} \eqn{= a}, \code{scale} \eqn{= b},  \code{shape2} \eqn{= p} and \code{shape3} \eqn{= q}. 
@@ -39,7 +39,7 @@ which are needed for deriving, for instance, the Fisher information matrix of th
 }
 \value{
 \code{moment.gb2} gives the moment of order \code{k}, 
-\code{incompl.gb2} gives the the incomplete moment of order \code{k},
+\code{incompl.gb2} gives the incomplete moment of order \code{k},
 \code{El.gb2} gives the expectation of \eqn{log(X)}, 
 \code{vl.gb2} gives the variance of \eqn{log(X)}, 
 \code{sl.gb2} gives the skewness of \eqn{log(X)}, 

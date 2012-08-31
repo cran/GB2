@@ -16,12 +16,11 @@ dlogf.gb2(xi, shape1, scale, shape2, shape3)
 d2logf.gb2(xi, shape1, scale, shape2, shape3)
 }
 \arguments{
-  \item{xi}{a scalar.}
-  \item{x}{a scalar or a numeric vector.}
-  \item{shape1}{positive parameter.}
-  \item{scale}{positive parameter.}
-  \item{shape2, shape3}{positive parameters of the Beta distribution.}
-  
+  \item{xi}{numeric; a data value.}
+  \item{x}{numeric; a vector of data values.  Should not contain missing values.}
+  \item{shape1}{numeric; positive parameter.}
+  \item{scale}{numeric; positive parameter.}
+  \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
 }
 \details{
 We calculate \eqn{log(f(x, \theta))}, where \eqn{f} is the GB2 density with parameters \code{shape1} \eqn{= a}, \code{scale} \eqn{= b}, 

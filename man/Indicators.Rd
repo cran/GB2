@@ -22,13 +22,13 @@ main.gb2(prop, shape1, scale, shape2, shape3)
 main2.gb2(prop, shape1, scale, shape12, shape13)
 }
 \arguments{
-  \item{prop}{proportion (in general is set to 0.6).}
-  \item{arpr}{the value of the at-risk-of-poverty rate.}
-  \item{shape1}{positive parameter.}
-  \item{scale}{positive parameter.}
-  \item{shape2, shape3}{positive parameters of the Beta distribution.}
-  \item{shape12}{the product of the two parameters \code{shape1} and \code{shape2}.}
-  \item{shape13}{the product of the two parameters \code{shape1} and \code{shape3}.}
+  \item{prop}{numeric; proportion (in general is set to 0.6).}
+  \item{arpr}{numeric; the value of the at-risk-of-poverty rate.}
+  \item{shape1}{numeric; positive parameter.}
+  \item{scale}{numeric; positive parameter.}
+  \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
+  \item{shape12}{numeric; the product of the two parameters \code{shape1} and \code{shape2}.}
+  \item{shape13}{numeric; the product of the two parameters \code{shape1} and \code{shape3}.}
 }
 \details{
 In June 2006, the  Social Protection Committee, which is a group of officials of the European Commisiion, adopts a set of common indicators for the social protection and social inclusion process.
@@ -43,7 +43,7 @@ The relative median at-risk-of-poverty gap (or RMPG) is defined as the differenc
 below the ARPT and the ARPT itself, expressed as a percentage of the ARPT.
 
 The income quintile share ratio (or QSR) is defined as the ratio of total income received by the 20\% of the country's
-population with the highest income (top quintile) to that received by the 20<% of the country's population with the lowest
+population with the highest income (top quintile) to that received by the 20\% of the country's population with the lowest
 income (lowest quintile).
 
 Let \eqn{x_{0.5}}{x_0.5} be the median of a GB2 with parameters \code{shape1} \eqn{= a}, \code{scale} \eqn{= b},  \code{shape2} \eqn{= p} and \code{shape3} \eqn{= q}. Then, 

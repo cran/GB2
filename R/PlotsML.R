@@ -1,4 +1,4 @@
-plotsML.gb2 <- function(z, shape1, scale, shape2, shape3, w=1){
+plotsML.gb2 <- function(z, shape1, scale, shape2, shape3, w=rep(1,length(z))){
   
   d     <- data.frame(inc=z,w=w)
 	d     <- d[!is.na(d$inc),]

@@ -1,48 +1,44 @@
 
 
 # Full GB2 log-likelihood (personal level)
-loglp.gb2 <- function(x, shape1, scale, shape2, shape3, w=1){
+loglp.gb2 <- function(x, shape1, scale, shape2, shape3, w=rep(1, length(x))){
 sw <- sum(w)
-lw <- length(w)
-if (lw==1) sw <- length(x)
 logf <- logf.gb2(x,shape1,scale,shape2,shape3)
 logl <- sum(w*logf)/sw
 return(logl)
 }
 
 # Full GB2 log-likelihood (household level)
-loglh.gb2 <- function(x, shape1, scale, shape2, shape3, w=1, hs){
-logf <- logf.gb2(x,shape1,scale,shape2,shape3)
-sw <- sum(w*hs)
-lw <- length(w)
-if (lw==1) sw <- length(x*hs)
-loglh <- sum(w*hs*logf)/sw
-return(loglh)
+loglh.gb2 <- function (x, shape1, scale, shape2, shape3, w=rep(1, length(x)), hs = rep(1,length(x))) {
+    logf <- logf.gb2(x, shape1, scale, shape2, shape3)
+    sw <- sum(w*hs)
+    loglh <- sum(w*hs*logf)/sw
+    return(loglh)
 }
 
-# Score functions for the full GB2 likelihood (personal level)
-scoresp.gb2 <- function(x, shape1, scale, shape2, shape3, w=1){
-sw <- sum(w)
-lw <- length(w)
-if (lw==1) sw <- length(x)
-dlogl <- 0
-for (i in 1:lw){
-dlogf <- dlogf.gb2(x[i],shape1,scale,shape2,shape3)
-dlogl <- dlogl + w[i]*dlogf
-}
-return(dlogl/sw)
+# Score functions for the full GB2 log-likelihood (personal level)
+
+scoresp.gb2 <- function (x, shape1, scale, shape2, shape3, w=rep(1, length(x))){ 
+    sw <- sum(w)
+    lx <- length(x)
+    dlogl <- rep(0,4)
+    for (i in 1:lx) {
+        dlogf <- dlogf.gb2(x[i], shape1, scale, shape2, shape3)
+        dlogl <- dlogl + w[i] * dlogf
+     }
+    return(dlogl/sw)
 }
 
-# Score functions for the full GB2 likelihood (household level)
-scoresh.gb2 <- function(x, shape1, scale, shape2, shape3, w=1, hs){
-sw <- sum(w*hs)
-lw <- length(w)
-dlogL <- 0
-for (i in 1:lw){
-dlogf <- dlogf.gb2(x[i],shape1,scale,shape2,shape3)
-dlogL <- dlogL + w[i]*hs[i]*dlogf
-}
-return(dlogL/sw)
+# Score functions for the full GB2 log-likelihood (household level)
+scoresh.gb2 <- function(x, shape1, scale, shape2, shape3, w=rep(1, length(x)), hs=rep(1, length(x))){
+    sw <- sum(w*hs)
+    lx <- length(x)
+    dlogl <- rep(0,4)
+    for (i in 1:lx) {
+        dlogf <- dlogf.gb2(x[i], shape1, scale, shape2, shape3)
+        dlogl <- dlogl + w[i] * hs[i]* dlogf
+     }
+    return(dlogl/sw)
 }
 
 # GB2 Fisher information matrix (I_1)

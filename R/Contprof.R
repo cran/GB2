@@ -1,6 +1,6 @@
 # Contour plot of the profile log-likelihood
 
-contprof.gb2 <- function(z, w=1, resol, low=0.1, high=20){
+contprof.gb2 <- function(z, w=rep(1,length(z)), resol, low=0.1, high=20){
   
 # Initial values of a and b under Fisk
 x0 <- fisk(z, w)[1:2]    

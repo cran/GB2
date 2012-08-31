@@ -11,17 +11,17 @@ Function \code{plotsML.gb2} produces two plots. The first is a plot of the empir
 The second is a plot of the kernel density versus the fitted GB2 density.  Function \code{saveplot} saves locally the produced plot.
 }
 \usage{
-plotsML.gb2(z, shape1, scale, shape2, shape3, w=1) 
+plotsML.gb2(z, shape1, scale, shape2, shape3, w=rep(1,length(z))) 
 saveplot(name, pathout)
 }
 \arguments{
-  \item{z}{a numeric vector; in general, a vector of income values.}
-  \item{shape1}{positive parameter.}
-  \item{scale}{positive parameter.}
-  \item{shape2, shape3}{positive parameters of the Beta distribution.}
-  \item{w}{a numeric vector of the same length as \code{z}; the sampling weights. If not available, the function should be called only with its first argument (the weights are set to 1).}
-  \item{name}{a character string specifying the name of the plot.}
-  \item{pathout}{a character string specifying the path  of the folder or device where the plot will be saved.}
+  \item{z}{numeric; vector of data values. Should not contain missing values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{shape1}{numeric; positive parameter.}
+  \item{scale}{numeric; positive parameter.}
+  \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
+  \item{name}{string; the name of the plot.}
+  \item{pathout}{string; the path of the folder or device where the plot will be saved.}
 }
 \details{
 The used kernel is "Epanechnikov" (see \code{\link{plot.density}}).  

@@ -1,10 +1,5 @@
 
-#Function varscore modifies the function score.gb2
-#Calculates the derivatives of the log and not of the sum of the weigted log
-#returns a 4x4 matrix, for an observation x[i] with weight w[i], of :
-#(w_i*dlog(f_i)/dtheta)(w_i*dlog(f_i)/dtheta)'
-
-varscore.gb2 <- function(x, shape1, scale, shape2, shape3, w=1, hs){
+varscore.gb2 <- function(x, shape1, scale, shape2, shape3, w=rep(1, length(x)), hs=rep(1,length(x))){
 m <- length(x)
 Vsc <- matrix(rep(0,16), ncol=4)
 for (i in 1:m){
@@ -15,7 +10,7 @@ Vsc <- Vsc + (hs[i]^2)*Wsci
 return(Vsc)
 }
 
-vepar.gb2 <- function(x, Vsc, shape1, scale, shape2, shape3, w=1, hs){
+vepar.gb2 <- function(x, Vsc, shape1, scale, shape2, shape3, w=rep(1, length(x)), hs=rep(1,length(x))){
 #estimated variance-covariance matrix of af, bf, pf and qf (EVCM)
 m <- length(x)
 #the left and right side of the sandwich estimator 
@@ -49,7 +44,6 @@ main.gb2(0.6,par[1],par[2],par[3],par[4])[2]
 arpr <- function(par){
 main.gb2(0.6,par[1],par[2],par[3],par[4])[3]
 }
-
 rmpg <- function(par){
 main.gb2(0.6,par[1],par[2],par[3],par[4])[4]
 }
@@ -71,13 +65,11 @@ MFDI <- rbind(dmed, dmean, darpr, drmpg, dqsr, dgini, deparse.level=0)
 return(MFDI) 
 }
 
-veind.gb2 <- function(x, Vpar, shape1, scale, shape2, shape3, w=1, hs){
+veind.gb2 <- function(Vpar, shape1, scale, shape2, shape3){
 
 # matrix of first derivatives of the indicators
 MFDI <- derivind.gb2(shape1, scale, shape2, shape3)
-
 #delta method for variance estimation of the indicators
-
 # variance-covariance matrix of the indicators
 IVCM <- matrix(rep(0, 36), ncol=6)
 for (i in 1:6){

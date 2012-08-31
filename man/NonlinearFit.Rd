@@ -2,40 +2,32 @@
 \Rdversion{1.1}
 \alias{NonlinearFit}
 \alias{nlsfit.gb2}
-\alias{nlsfit2.gb2}
 \title{
-Fitting the GB2 by Minimizing the Distance Between a Set of Indicators and Their GB2 Expressions
+Fitting the GB2 by Minimizing the Distance Between a Set of Empirical Indicators and Their GB2 Expressions
 }
 \description{
-Fitting the parameters of the GB2 distribution by optimizing the squared weighted distance between a set of empirical indicators and the GB2 indicators using nonlinear least squares 
-(function \code{nls} from package \code{stats}).
+Fitting the parameters of the GB2 distribution by optimizing the squared weighted distance between a set of empirical indicators, i.e. the median, the ARPR, the RMPG, the QSR and the Gini coefficient,
+and the GB2 indicators using nonlinear least squares (function \code{nls} from package \code{stats}).
 }
 \usage{
-nlsfit.gb2(z, w=1) 
-nlsfit2.gb2(z, w=1, a.fit, b.fit, p.fit, q.fit, cva.fit) 
+nlsfit.gb2(med, ei4, par0=c(1/ei4[4],med,1,1), cva=1, bound1=par0[1]*max(0.2,1-2*cva), bound2=par0[1]*min(2,1+2*cva), ei4w=1/ei4)
 }
 \arguments{
-  \item{z}{a numeric vector; in general, the income values.}
-  \item{w}{a numeric vector of the same length as \code{z}; the sampling weights. If not available, the function should be called only with its first argument (the weights are set to 1).}
-  \item{a.fit, b.fit, p.fit, q.fit}{fitted parameters, e.g. my maximum likelihood estimation, of the GB2 distribution.}
-  \item{cva.fit}{coefficient of variation of the fitted parameter \eqn{a.fit}.}
+  \item{med}{numeric; the empirical median.}
+  \item{ei4}{numeric; the values of the empirical indicators.}
+  \item{par0}{numeric; vector of initial values for the GB2 parameters \eqn{a, b, p} and \eqn{q}. The default is to take \eqn{a} equal to the inverse of the empirical Gini coefficient, \eqn{b} equal to the empirical median and \eqn{p = q = 1}.}
+  \item{cva}{numeric; the coefficient of variation of the ML estimate of the parameter \eqn{a}. The default value is 1.}
+  \item{bound1, bound2}{numeric; the lower and upper bounds for the parameter \eqn{a} in the algorithm. The default values are \eqn{0.2*a_{0}} and \eqn{2*a_{0}}, where \eqn{a_{0}} is the initial value of the parameter \eqn{a}.}
+  \item{ei4w}{numeric; vector of weights of to be passed to the \code{nls} function. The default values are the inverse of the empirical indicators.}
 }
 \details{
- We consider the following set of indicators: \deqn{A = (median, ARPR, RMPG, QSR, Gini)} and their corresponding GB2 expressions \eqn{A_{GB2}(a,b,p,q)}.  The nonlinear model that is passed to \code{nls} 
- in the function \code{nlsfit.gb2} is given by:
-  \deqn{\sum_{i=1}^5 c_i \left(A_{empir,i}-A_{GB2,i}(a,b,p,q)\right)^2,} where the weights \eqn{c_i} take the differing scales into account.  Initial values for the parameters are taken from the Fisk distribution.  
-  Estimates of the GB2 parameters are calculated by using the generic function \code{\link{coef}} on the fitted model object.
- The second function, \code{mod_nlsfit.gb2}, fits the parameters of the GB2 in two consecutive steps.  
- In the first step, we use the set of indicators, excluding the median, and their corresponding expressions in function of \code{a}, \code{ap} and \code{aq}.
- The lower and upper bounds for the algorithm "port" of \code{nls} are defined.  Starting values are the ML estimates of the GB2 parameters \code{a, p} and \code{q}.  
- The bounds for \code{a} are defined in function of the coefficient of variation of the fitted parameter \code{a.fit}.  
- \code{ap} and \code{aq} are bounded so that the constraints for the existence of the moments of the GB2 distribution and the excess for calculating the Gini coefficient are fulfilled, 
- i.e. \eqn{ap \ge 1} and \eqn{aq \ge 2}.  In the second step, only the the parameter \code{b} is estimated, optimizing the weighted square difference between the empirical median and the GB2 median in function of the already obtained NLS parameters 
- \code{a, p} and \code{q}. 
+ We consider the following set of indicators \eqn{A = (median, ARPR, RMPG, QSR, Gini)} and their corresponding GB2 expressions \eqn{A_{GB2}}. We fit the parameters of the GB2 in two consecutive steps. In the first step, we use the set of indicators, excluding the median, and their corresponding expressions in function of \eqn{a}, \eqn{ap} and \eqn{aq}. The bounds for \eqn{a} are defined in function of the coefficient of variation of the fitted parameter \eqn{\hat(a)}. The nonlinear model that is passed to \code{nls} is given by:
+  \deqn{\sum_{i=1}^4 c_i (A_{empir,i}-A_{GB2,i}(a,ap,aq))^2,} where the weights \eqn{c_i} take the differing scales into account and are given by the vector \code{ei4w}. 
+ \eqn{ap} and \eqn{aq} are bounded so that the constraints for the existence of the moments of the GB2 distribution and the excess for calculating the Gini coefficient are fulfilled, 
+ i.e. \eqn{ap \ge 1} and \eqn{aq \ge 2}.  In the second step, only the the parameter \eqn{b} is estimated, optimizing the weighted square difference between the empirical median and the GB2 median in function of the already obtained NLS parameters \eqn{a, p} and \eqn{q}. 
 }
-\value{\code{nlsfit.gb2} returns a list of two values: 1) a data frame containing the values of the fitted GB2 parameters, the values of the estimated GB2 indicators and the values of the empirical estimates of the indicators
- and 2) the fitted object. \code{nlsfit2.gb2} returns a list of three values: 1) a data frame containing the values of the fitted GB2 parameters, the values of the estimated GB2 indicators and the values of the empirical estimates of the indicators, 
- 2) the first fitted object and 3) the second fitted object.
+\value{
+\code{nlsfit.gb2} returns a list of three values: the fitted GB2 parameters, the first fitted object and the second fitted object.
 }
 \seealso{
 \code{\link[stats]{nls}}, \code{\link{Thomae}}, \code{\link{moment.gb2}}
@@ -45,21 +37,19 @@ Monique Graf and Desislava Nedyalkova
 }
 \examples{
 # Takes long time to run, as it makes a call to the function ml.gb2
+
 \dontrun{
 library(laeken)
 data(eusilc)
 
-# Income
+# Personal income
 inc <- as.vector(eusilc$eqIncome)
 
-# Weights
+# Sampling weights
 w <- eusilc$rb050
 
-# Household size
-hs <- eusilc$hsize
-
 # Data set
-d <- data.frame(inc, w, hs)
+d <- data.frame(inc, w)
 d <- d[!is.na(d$inc),]
    
 # Truncate at 0
@@ -75,50 +65,45 @@ af <- fitf$par[1]
 bf <- fitf$par[2]
 pf <- fitf$par[3]
 qf <- fitf$par[4]
-apf <- af*pf
-aqf <- af*qf
+
 gb2.par <- c(af, bf, pf, qf)
 
-# GB2 indicators
-indicm <- round(main.gb2(0.6,af,bf,pf,qf), digits=3)
-
 # Empirical indicators
-indice <- round(main.emp(inc,w), digits=3)
+indicEMP  <- main.emp(inc, w)
+indicEMP <- c(indicEMP[1],indicEMP[3:6])
+indicE <- round(indicEMP, digits=3)
 
-# NLS fit 1
-n1 <- nlsfit.gb2(inc,w)
-n1[[1]]
+# Nonlinear fit
+nn <- nlsfit.gb2(indicEMP[1,3:6],indicEMP[3:6])
+an <- nn[[1]][1]
+bn <- nn[[1]][2]
+pn <- nn[[1]][3]
+qn <- nn[[1]][4]
 
-# Scores (partial derivatives of the log-likelihood with respect to the GB2 parameters)
-scores <- matrix(nrow=length(inc), ncol=4)
-for (i in 1:length(inc)){
-scores[i,] <- dlogf.gb2(inc[i], af ,bf, pf, qf)
-}
+# GB2 indicators
+indicNLS <- c(main.gb2(0.6, an, bn, pn, qn)[1], main.gb2(0.6, an, bn, pn, qn)[3:6])
+indicML <- c(main.gb2(0.6, af, bf, pf, qf)[1], main.gb2(0.6, af, bf, pf, qf)[3:6])
+indicN <- round(indicNLS, digits=3)
+indicM <- round(indicML, digits=3)
 
-# Data on households only
-dh <- unique(d)
-hinc <- dh$inc
-hw <- dh$w
-hs <- dh$hs 
+# Likelihoods
+nlik <- loglp.gb2(inc, an, bn, pn, qn, w)
+mlik <- loglp.gb2(inc, af, bf, pf, qf, w)
 
-# Estimated variance-covariance matrix of af, bf, pf and qf (EVCM)
-VSC <- varscore.gb2(hinc,af,bf,pf,qf,hw,hs)
-VCMP <- vepar.gb2(hinc,VSC,af,bf,pf,qf,hw,hs)[[1]]
+# Results
+type=c("Emp. est", "NLS", "ML full")
+results <- data.frame(type=type,
+        median=c(indicE[1], indicN[1], indicM[1]),
+        ARPR=c(indicE[2], indicN[2], indicM[2]),
+        RMPG=c(indicE[3], indicN[3], indicM[3]),
+        QSR =c(indicE[4], indicN[4], indicM[4]),
+        GINI=c(indicE[5], indicN[5], indicM[5]),
+        likelihood=c(NA, nlik, mlik),
+        a=c(NA, an, af), b=c(NA, bn, bf) ,p=c(NA, pn, pf), q=c(NA, qn, qf))
 
-# Standard errors of af, bf, ...
-se.par <- rep(0,4)
-for (i in 1:4){
-se.par[i] <- sqrt(VCMP[i,i])
-}
-
-# Coefficients of variation of the fitted parameters
-cv.par <- se.par/gb2.par
-cvaf <- cv.par[1]
-
-# NLS fit 2
-n2 <- nlsfit2.gb2(inc, w, af, bf, pf, qf, cvaf)
-n2[[1]]
 }
 }
-\keyword{distribution}
+\keyword{
+distribution
+}
 

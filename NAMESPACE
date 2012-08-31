@@ -3,6 +3,7 @@ import(stats)
 
 importFrom(hypergeo, isgood, genhypergeo_series)
 importFrom(numDeriv, grad)
+importFrom(cubature, adaptIntegrate)
 
 export(
  dgb2,
@@ -46,15 +47,40 @@ export(
  main.emp,
  mlfit.gb2,
  nlsfit.gb2,
- nlsfit2.gb2,
  plotsML.gb2,
+ robwts,
  saveplot,
  contprof.gb2,
  contindic.gb2,
  varscore.gb2,
  vepar.gb2,
  derivind.gb2,
- veind.gb2
+ veind.gb2,
+ fg.cgb2,
+ dl.cgb2,
+ pl.cgb2,
+ dcgb2,
+ pcgb2,
+ prcgb2,
+ mkl.cgb2,
+ moment.cgb2,
+ incompl.cgb2,
+ qcgb2,
+ rcgb2,
+ arpt.cgb2,
+ arpr.cgb2,
+ rmpg.cgb2,
+ qsr.cgb2,
+ vofp.cgb2,
+ pofv.cgb2,
+ logl.cgb2,
+ scores.cgb2,
+ ml.cgb2,
+ pkl.cavgb2,
+ lambda0.cavgb2,
+ logl.cavgb2,
+ scores.cavgb2,
+ ml.cavgb2 
  )
 
 

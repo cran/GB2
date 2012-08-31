@@ -12,30 +12,29 @@ Variance Estimation of the Parameters of the GB2 Distribution
 Calculation of variance estimates of the estimated GB2 parameters and the estimated GB2 indicators under cluster sampling.
 }
 \usage{
-varscore.gb2(x, shape1, scale, shape2, shape3, w=1, hs)
-vepar.gb2(x, Vsc, shape1, scale, shape2, shape3, w=1, hs)
+varscore.gb2(x, shape1, scale, shape2, shape3, w=rep(1,length(x)), hs=rep(1,length(x)))
+vepar.gb2(x, Vsc, shape1, scale, shape2, shape3, w=rep(1,length(x)), hs=rep(1,length(x)))
 derivind.gb2(shape1, scale, shape2, shape3)
-veind.gb2(x, Vpar, shape1, scale, shape2, shape3, w=1, hs)
+veind.gb2(Vpar, shape1, scale, shape2, shape3)
 }
 \arguments{
-  \item{x}{vector of data values.}
-  \item{shape1}{positive parameter.}
-  \item{scale}{positive parameter.}
-  \item{shape2, shape3}{positive parameters of the Beta distribution.}
-  \item{w}{vector of weights.}
-  \item{hs}{household size.}
-  \item{Vsc}{a squared matrix of size the number of parameters, e.g. the estimated design variance-covariance matrix of the estimated parameters.}
-  \item{Vpar}{a squared matrix of size the number of parameters. The sandwich variance estimator of the vector of parameters.}
+  \item{x}{numeric; vector of data values.  Should not contain missing values.}
+  \item{Vsc}{numeric; 4 by 4 matrix.}
+  \item{shape1}{numeric; positive parameter.}
+  \item{scale}{numeric; positive parameter.}
+  \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{hs}{numeric; vector of household sizes. Must have the same length as \code{x}. By default \code{w} is a vector of 1.}
+  \item{Vpar}{numeric; 4 by 4 matrix.}
 }
 \details{
-We express the log-likelihood as a weighted sum of \eqn{log(f)}, evaluated at the data points, where \eqn{f} is the GB2 density with parameters \code{shape1} \eqn{= a}, \code{scale} \eqn{= b}, 
-\code{shape2} \eqn{= p} and \code{shape3} \eqn{= q}.  Knowing the first and second derivatives of \eqn{log(f)}, and using the sandwich variance estimator (see Freedman (2006)), the calculation of the variance estimates of the GB2
-parameters is straightforward. We know that the GB2 estimates of the Laeken indicators are functions of the GB2 parameters. In this case, the variance estimates of the fitted indicators are obtained 
-using the delta method. More details can be found in Graf and Nedyalkova (2010).
+Knowing the first and second derivatives of \eqn{log(f)}, and using the sandwich variance estimator (see Freedman (2006)), the calculation of the variance estimates of the GB2
+parameters is straightforward. \code{Vsc} is a square matrix of size the number of parameters, e.g. the estimated design variance-covariance matrix of the estimated parameters. We know that the GB2 estimates of the Laeken indicators are functions of the GB2 parameters. In this case, the variance estimates of the fitted indicators are obtained 
+using the delta method. The function \code{veind.gb2} uses \code{Vpar}, the sandwich variance estimator of the vector of parameters, in order to obtain the sandwich variance estimator of the indicators. More details can be found in Graf and Nedyalkova (2011).
 }
 \value{
 \code{varscore.gb2} calculates the middle term of the sandwich variance estimator under simple random cluster sampling. \code{vepar.gb2} returns a list of two elements: 
-the estimated variance-covariance matrix of the estimated GB2 parameters and the second partial derivative of the pseudo log-likelihood function.
+the estimated variance-covariance matrix of the estimated GB2 parameters and the second-order partial derivative of the pseudo log-likelihood function.
 The function \code{veind.gb2} returns the estimated variance-covariance matrix of the estimated GB2 indicators.  \code{derivind.gb2} calculates the numerical derivatives of the GB2 indicators and is for internal use only. 
 }
 \references{
@@ -47,10 +46,11 @@ Freedman, D. A. (2006),
 On The So-Called "Huber Sandwich Estimator" and "Robust Standard Errors".
 \emph{The American Statistician}, \bold{60}, 299--302.
 
-Graf, M. and Nedyalkova, D. (2010),
-Variance Estimation of the Maximum Likelihood Estimates of the Parameters of the GB2 Distribution of the Second Kind and of the Laeken Indicators under Cluster Sampling.
-Working paper, SFSO.
-
+Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
+ Indicators of Poverty and Social Exclusion.
+ \emph{Technical report}, AMELI-Project.
+ 
 Pfeffermann, D. and Sverchkov, M. Yu. (2003),
 Fitting Generalized Linear Models under Informative Sampling.
 In, Skinner, C.J. and Chambers, R.L. (eds.). 
@@ -135,7 +135,7 @@ VSC <- varscore.gb2(heqInc, af, bf, pf, qf, hw, hs)
 DV1 <- vcov(svytotal(~scores[,1]+scores[,2]+scores[,3]+scores[,4], design=sdotr))
 DV2 <- vcov(svytotal(~scores[,1]+scores[,2]+scores[,3]+scores[,4], design=sddtr))
 
-# Estimated variance-covariance matrix of the parameteres af, bf, pf and qf 
+# Estimated variance-covariance matrix of the parameters af, bf, pf and qf 
 VCMP <- vepar.gb2(heqInc, VSC, af, bf, pf, qf, hw, hs)[[1]]
 DVCMP1 <- vepar.gb2(heqInc, DV1, af, bf, pf, qf, hw, hs)[[1]]
 DVCMP2 <- vepar.gb2(heqInc, DV2, af, bf, pf, qf, hw, hs)[[1]]
@@ -220,16 +220,23 @@ cvd2.ind <- sed2.ind/gb2.ind
 
 #results 
 res <- data.frame(am = af, bm = bf, pm = pf, qm = qf, lik = mlik,
-  median = gb2.ind[[1]], mean = gb2.ind[[2]], ARPR = gb2.ind[[3]], RMPG = gb2.ind[[4]], QSR = gb2.ind[[5]], Gini = gb2.ind[[6]],
-  emedian = emp.ind[[1]], emean = emp.ind[[2]], eARPR = emp.ind[[3]], eRMPG = emp.ind[[4]], eQSR = emp.ind[[5]], eGini = emp.ind[[6]],
-  cva = cv.par[1], cvb = cv.par[2], cvp= cv.par[3], cvq = cv.par[4], cvd1a = cvd1.par[1], cvd1b = cvd1.par[2], cvd1p= cvd1.par[3], cvd1q = cvd1.par[4],
+  median = gb2.ind[[1]], mean = gb2.ind[[2]], ARPR = gb2.ind[[3]], 
+    RMPG = gb2.ind[[4]], QSR = gb2.ind[[5]], Gini = gb2.ind[[6]],
+  emedian = emp.ind[[1]], emean = emp.ind[[2]], eARPR = emp.ind[[3]], 
+    eRMPG = emp.ind[[4]], eQSR = emp.ind[[5]], eGini = emp.ind[[6]],
+  cva = cv.par[1], cvb = cv.par[2], cvp= cv.par[3], cvq = cv.par[4],
+  cvd1a = cvd1.par[1], cvd1b = cvd1.par[2], cvd1p= cvd1.par[3], cvd1q = cvd1.par[4],
   cvd2a = cvd2.par[1], cvd2b = cvd2.par[2], cvd2p= cvd2.par[3], cvd2q = cvd2.par[4],
-  cvmed = cv.ind[[1]], cvmean = cv.ind[[2]], cvARPR = cv.ind[[3]], cvRMPG = cv.ind[[4]], cvQSR = cv.ind[[5]], cvGini = cv.ind[[6]],
-  cvd1med = cvd1.ind[[1]], cvd1mean = cvd1.ind[[2]], cvd1ARPR = cvd1.ind[[3]], cvd1RMPG = cvd1.ind[[4]], cvd1QSR = cvd1.ind[[5]], cvd1Gini = cvd1.ind[[6]],
-  cvd2med = cvd2.ind[[1]], cvd2mean = cvd2.ind[[2]], cvd2ARPR = cvd2.ind[[3]], cvd2RMPG = cvd2.ind[[4]], cvd2QSR = cvd2.ind[[5]], cvd2Gini = cvd2.ind[[6]])
+  cvmed = cv.ind[[1]], cvmean = cv.ind[[2]], cvARPR = cv.ind[[3]], 
+  cvRMPG = cv.ind[[4]], cvQSR = cv.ind[[5]], cvGini = cv.ind[[6]],
+  cvd1med = cvd1.ind[[1]], cvd1mean = cvd1.ind[[2]], cvd1ARPR = cvd1.ind[[3]], 
+  cvd1RMPG = cvd1.ind[[4]], cvd1QSR = cvd1.ind[[5]], cvd1Gini = cvd1.ind[[6]],
+  cvd2med = cvd2.ind[[1]], cvd2mean = cvd2.ind[[2]], cvd2ARPR = cvd2.ind[[3]], 
+  cvd2RMPG = cvd2.ind[[4]], cvd2QSR = cvd2.ind[[5]], cvd2Gini = cvd2.ind[[6]])
 
 res
 \dontrun{inCI}
 }
 }
 \keyword{distribution}
+\encoding{latin1}

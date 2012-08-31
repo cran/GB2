@@ -10,7 +10,7 @@ Computation of the Gini Coefficient for the GB2 Distribution and its Particular 
 }
 \description{
 Computes the Gini coefficient for the GB2 distribution using the function \code{\link{gb2.gini}}. 
-Computes the Gini coeficient for the Beta Distribution of the Second Kind, Dagum and Singh-Maddala distributions.
+Computes the Gini coefficient for the Beta Distribution of the Second Kind, Dagum and Singh-Maddala distributions.
 }
 \usage{
 gini.gb2(shape1, shape2, shape3)
@@ -19,11 +19,8 @@ gini.dag(shape1, shape2)
 gini.sm(shape1, shape3)
 }
 \arguments{
-  \item{shape1}{positive parameter.}
-  \item{shape2, shape3}{positive parameters of the Beta distribution.}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{shape1}{numeric; positive parameter.}
+  \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
 }
 \value{
 The Gini coefficient.
