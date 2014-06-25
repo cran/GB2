@@ -15,12 +15,13 @@ qgb2(prob, shape1, scale, shape2, shape3)
 rgb2(n, shape1, scale, shape2, shape3)
 }
 \arguments{
-  \item{x}{numeric; vector of quantiles. Should not contain missing values.}
-  \item{prob}{numeric; vector of probabilities.}
+  \item{x}{numeric; vector of quantiles.}
   \item{shape1}{numeric; positive parameter.}
   \item{scale}{numeric; positive parameter.}
   \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
-  \item{n}{numeric; number of observations. If \code{length(n) > 1}, the length is taken to be the number required.}
+  \item{prob}{numeric; vector of probabilities.}
+  \item{n}{numeric; number of observations. If \code{length(n) > 1}, the length
+    is taken to be the number required.}
 }
 \details{
 The Generalized Beta distribution of the second kind with parameters \code{shape1} \eqn{= a}, \code{scale} \eqn{= b},  \code{shape2} \eqn{= p} and \code{shape3} \eqn{= q} has density

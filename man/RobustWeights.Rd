@@ -12,8 +12,8 @@ Calculation of a Huber-type correction factor by which the vector of weights is 
 robwts(x, w=rep(1,length(x)), c=0.01, alpha=0.001)
 }
 \arguments{
-  \item{x}{numeric; vector of data values. Should not contain missing values.}
-  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{x}{numeric; vector of data values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1.}
   \item{c}{numeric; a constant which can take different values, e.g. 0.01,0.02. By default \eqn{c=0.1}.}
   \item{alpha}{numeric; a probability in the interval \eqn{(0,1)}. By default \eqn{alpha=0.001}.}
 }
@@ -25,7 +25,7 @@ If \eqn{x} denotes the observed value and \eqn{x_{\alpha}} the \eqn{\alpha}-th q
 \value{\code{robwts} returns a list of two elements: the vector of correction factors by which the weights are multiplied and the vector of corrected (robustified) weights. 
 }
 \references{
- Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -33,4 +33,3 @@ If \eqn{x} denotes the observed value and \eqn{x_{\alpha}} the \eqn{\alpha}-th q
 \author{
 Monique Graf
 }
-\encoding{latin1}

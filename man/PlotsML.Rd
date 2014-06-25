@@ -15,8 +15,8 @@ plotsML.gb2(z, shape1, scale, shape2, shape3, w=rep(1,length(z)))
 saveplot(name, pathout)
 }
 \arguments{
-  \item{z}{numeric; vector of data values. Should not contain missing values.}
-  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{z}{numeric; vector of data values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1.}
   \item{shape1}{numeric; positive parameter.}
   \item{scale}{numeric; positive parameter.}
   \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}

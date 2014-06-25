@@ -50,7 +50,7 @@ plotsML.gb2 <- function(z, shape1, scale, shape2, shape3, w=rep(1,length(z))){
   xx1 <- qgb2(0.9, shape1, scale, shape2, shape3)
 	xx2 <- qgb2(0.6, shape1, scale, shape2, shape3)
 	yy <- dgb2(xx2, shape1, scale, shape2, shape3)
-	plot.density(dens,main=paste("Density plot")#, sub=paste("kernel=",kernel)
+	plot(dens,main=paste("Density plot")#, sub=paste("kernel=",kernel)
 	,xlim=xlim,ylim=c(0,ysup))
 	curve(dgb2(x,shape1,scale,shape2,shape3),from=liminf,to= limsup,n=2000, col="red", add = TRUE)
 	legend(list(x=xx1,y=yy), legend = leg.txt, col=c("black", "red"), lty=1, bty="n")

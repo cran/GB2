@@ -18,12 +18,12 @@ derivind.gb2(shape1, scale, shape2, shape3)
 veind.gb2(Vpar, shape1, scale, shape2, shape3)
 }
 \arguments{
-  \item{x}{numeric; vector of data values.  Should not contain missing values.}
+  \item{x}{numeric; vector of data values.}
   \item{Vsc}{numeric; 4 by 4 matrix.}
   \item{shape1}{numeric; positive parameter.}
   \item{scale}{numeric; positive parameter.}
   \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
-  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1.}
   \item{hs}{numeric; vector of household sizes. Must have the same length as \code{x}. By default \code{w} is a vector of 1.}
   \item{Vpar}{numeric; 4 by 4 matrix.}
 }
@@ -46,7 +46,7 @@ Freedman, D. A. (2006),
 On The So-Called "Huber Sandwich Estimator" and "Robust Standard Errors".
 \emph{The American Statistician}, \bold{60}, 299--302.
 
-Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -221,10 +221,10 @@ cvd2.ind <- sed2.ind/gb2.ind
 #results 
 res <- data.frame(am = af, bm = bf, pm = pf, qm = qf, lik = mlik,
   median = gb2.ind[[1]], mean = gb2.ind[[2]], ARPR = gb2.ind[[3]], 
-    RMPG = gb2.ind[[4]], QSR = gb2.ind[[5]], Gini = gb2.ind[[6]],
-  emedian = emp.ind[[1]], emean = emp.ind[[2]], eARPR = emp.ind[[3]], 
-    eRMPG = emp.ind[[4]], eQSR = emp.ind[[5]], eGini = emp.ind[[6]],
-  cva = cv.par[1], cvb = cv.par[2], cvp= cv.par[3], cvq = cv.par[4],
+  RMPG = gb2.ind[[4]], QSR = gb2.ind[[5]], Gini = gb2.ind[[6]],
+  emedian = emp.ind[[1]], emean = emp.ind[[2]], eARPR = emp.ind[[3]],
+  eRMPG = emp.ind[[4]], eQSR = emp.ind[[5]], eGini = emp.ind[[6]],
+  cva = cv.par[1], cvb = cv.par[2], cvp= cv.par[3], cvq = cv.par[4], 
   cvd1a = cvd1.par[1], cvd1b = cvd1.par[2], cvd1p= cvd1.par[3], cvd1q = cvd1.par[4],
   cvd2a = cvd2.par[1], cvd2b = cvd2.par[2], cvd2p= cvd2.par[3], cvd2q = cvd2.par[4],
   cvmed = cv.ind[[1]], cvmean = cv.ind[[2]], cvARPR = cv.ind[[3]], 
@@ -239,4 +239,3 @@ res
 }
 }
 \keyword{distribution}
-\encoding{latin1}

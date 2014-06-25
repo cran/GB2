@@ -20,12 +20,12 @@ scoresh.gb2(x, shape1, scale, shape2, shape3, w=rep(1, length(x)), hs=rep(1, len
 info.gb2(shape1, scale, shape2, shape3)
 }
 \arguments{
-  \item{x}{numeric; vector of data values. Should not contain missing values.}
+  \item{x}{numeric; vector of data values.}
   \item{shape1}{numeric; positive parameter.}
   \item{scale}{numeric; positive parameter.}
   \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}
-  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1. Should not contain missing values.}
-  \item{hs}{numeric; vector of household sizes. Must have the same length as \code{x}. By default \code{hs} is a vector of 1. Should not contain missing values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1.}
+  \item{hs}{numeric; vector of household sizes. Must have the same length as \code{x}. By default \code{hs} is a vector of 1.}
 }
 \details{
 We express the log-likelihood as a weighted mean of \eqn{log(f)}, evaluated at the data points, where \eqn{f} is the GB2 density with parameters \code{shape1} \eqn{= a}, \code{scale} \eqn{= b}, 

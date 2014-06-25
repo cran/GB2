@@ -10,10 +10,10 @@ Quantiles and random generation of the Compound Distribution based on the GB2
 Calculation of the quantiles of a compound GB2 random variable. Random generation of compound GB2 variables.
 }
 \usage{
-qcgb2(prob, shape1, scale, shape2, shape3, pl0, pp, decomp="r",
- tol=1e-08, ff=1.5, debug=FALSE, maxiter=50)
-rcgb2(n, shape1, scale, shape2, shape3, pl0, pp, decomp="r",
- tol=1e-02, maxiter=100, debug = FALSE)
+qcgb2(prob, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-08, ff=1.5, 
+debug=FALSE, maxiter=50)
+rcgb2(n, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-02, maxiter=100,
+debug = FALSE)
 }
 \arguments{
   \item{prob}{numeric; vector of probabilities between 0 and 1.}
@@ -32,7 +32,7 @@ rcgb2(n, shape1, scale, shape2, shape3, pl0, pp, decomp="r",
 \code{qcgb2} returns a vector of quantiles and \code{rcgb2} return a vector of size \code{n} of GB2 compound random deviates.
 }
 \references{
- Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -55,7 +55,10 @@ p0 <- rep(1/3,3)
 p1 <- c(0.37,0.43,0.2)
 
 #Quantiles
+
 qcgb2(0.5,af,bf,pf,qf,p0,p1)
+qcgb2(1,af,bf,pf,qf,p0,p1)
+qcgb2(c(0.5,0.8),af,bf,pf,qf,p0,p1)
 
 #Random generation
 rcgb2(10,af,bf,pf,qf,p0,p1)
@@ -63,4 +66,4 @@ rcgb2(10,af,bf,pf,qf,p0,p1)
 #}
 }
 \keyword{distribution}
-\encoding{latin1}
+

@@ -10,7 +10,8 @@ Fitting the parameters of the GB2 distribution by optimizing the squared weighte
 and the GB2 indicators using nonlinear least squares (function \code{nls} from package \code{stats}).
 }
 \usage{
-nlsfit.gb2(med, ei4, par0=c(1/ei4[4],med,1,1), cva=1, bound1=par0[1]*max(0.2,1-2*cva), bound2=par0[1]*min(2,1+2*cva), ei4w=1/ei4)
+nlsfit.gb2(med, ei4, par0=c(1/ei4[4],med,1,1), cva=1, bound1=par0[1]*max(0.2,1-2*cva), 
+bound2=par0[1]*min(2,1+2*cva), ei4w=1/ei4)
 }
 \arguments{
   \item{med}{numeric; the empirical median.}

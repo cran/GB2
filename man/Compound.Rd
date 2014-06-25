@@ -23,8 +23,8 @@ pcgb2(y, shape1, scale, shape2, shape3, pl0, pp, decomp="r")
 prcgb2(y1, y2, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-08, debug=FALSE)
 }
 \arguments{
-  \item{x}{numeric; can be a vector. The value(s) at which the compound density and the component densities are calculated, \code{x} is positive. Should not contain missing values.}
-  \item{y}{numeric; can be a vector. The value(s) at which the compound distribution function and the component distribution functions are calculated. Should not contain missing values.}
+  \item{x}{numeric; can be a vector. The value(s) at which the compound density and the component densities are calculated, \code{x} is positive.}
+  \item{y}{numeric; can be a vector. The value(s) at which the compound distribution function and the component distribution functions are calculated.}
   \item{y1, y2}{numeric values.}
   \item{shape1, scale ,shape2, shape3}{numeric; positive parameters of the GB2 distribution.}
   \item{pl0}{numeric; a vector of initial proportions defining the number of components and the weight of each component density in the decomposition. Sums to one.}
@@ -40,7 +40,7 @@ The number of components \eqn{L} is given by the length of the vector \code{pl0}
 \value{\code{fg.cgb2} returns a matrix of size \eqn{N \times L} of the Gamma factors, \code{dl.cgb2} returns a matrix of size \eqn{N \times L} of component densities, \code{pl.cgb2} returns a matrix containing the \eqn{L} component cdfs, \code{dcgb2} returns a matrix of size \eqn{N \times 1} of the GB2 compound density function, \code{pcgb2} returns a matrix of size \eqn{N \times 1} of the GB2 compound distribution function and \code{prcgb2} returns a probability between 0 and 1.  
 }
 \references{
- Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -84,6 +84,5 @@ prcgb2(37000,38000,af,bf,pf,qf,p0,p1,"l")
 \keyword{
 distribution
 }
-\encoding{latin1}
 
 

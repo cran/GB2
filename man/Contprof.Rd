@@ -12,8 +12,8 @@ Produces a contour plot of the profile log-likelihood, which is a function of tw
 contprof.gb2(z, w=rep(1,length(z)), resol, low=0.1, high=20)
 }
 \arguments{
-  \item{z}{numeric; vector of data values. Should not contain missing values.}
-  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{z}{numeric; vector of data values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1.}
   \item{resol}{numeric; number of grid points horizontally and vertically. For better graph quality, we recommend a value of 100.}
   \item{low, high}{numeric; lower and upper factors for scale.}
 }

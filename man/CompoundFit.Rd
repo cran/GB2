@@ -24,7 +24,7 @@ ml.cgb2(fac, pl0, w=rep(1, dim(fac)[1]), maxiter=100)
   \item{pp}{numeric; vector of fitted proportions. Sums to one. If \code{pp} is equal to \code{pl0}, we obtain the GB2 distribution.}
   \item{fac}{numeric; matrix of Gamma factors.}
   \item{vl}{numeric; vector of parameters. Its length is equal to the length of \code{pp} - 1.}
-  \item{w}{numeric; vector of weights of length the number of rows of the matrix \code{fac}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{w}{numeric; vector of weights of length the number of rows of the matrix \code{fac}. By default \code{w} is a vector of 1.}
   \item{maxiter}{numeric; maximum number of iterations to perform. By default \code{maxiter} = 100.}
 }
 \details{
@@ -41,7 +41,6 @@ We express the log-likelihood as a weighted mean of \eqn{log(f) = log(\sum(p_\el
 Monique Graf and Desislava Nedyalkova
 }
 \examples{
-# Takes long time to run!
 \dontrun{
 # GB2 parameters:
 a <- 4
@@ -63,10 +62,10 @@ x <- rcgb2(n,a,b,p,q,pl0,pp,decomp="l")
 # Factors in component densities
 fac <- fg.cgb2(x,a,b,p,q, pl0,decomp="l")
 
-# Estimate the poportions:
+# Estimate the weights:
 estim <- ml.cgb2(fac,pl0)
 
-# estimated proportions:
+# estimated weights:
 estim[[1]]
 # [1] 0.09646875 0.80319695 0.10033430
 }

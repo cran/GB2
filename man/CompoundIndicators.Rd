@@ -36,7 +36,7 @@ The four indicators are described in details in the case of the GB2. The differe
 Monique Graf
 }
 \references{
- Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -54,19 +54,18 @@ q <- 1.03
 # initial proportions
 p0 <- rep(1/3,3)
 
-# fitted proportions
+#fitted proportions
 p1 <- c(0.39,0.26,0.35)
 
-# for the right decomposition
+# for the right discretization
 arpt <- arpt.cgb2(0.6, a, b, p, q, p0, p1)
 arpr <- arpr.cgb2(0.6, a, p, q, p0, p1)
-\dontrun{rmpg <- rmpg.cgb2(arpr, a, p, q, p0, p1)}
-\dontrun{qsr <- qsr.cgb2(a, p, q, p0, p1)}
+rmpg <- rmpg.cgb2(arpr, a, p, q, p0, p1)
+qsr <- qsr.cgb2(a, p, q, p0, p1)
 
-# for the left ddecomposition
+# for the left discretization
 arptleft <- arpt.cgb2(0.6, a, b, p, q, p0, p1, "l")
 }
 \keyword{distribution}
-\encoding{latin1}
 
 

@@ -17,10 +17,10 @@ proflogl.gb2(x, shape1, scale, w=rep(1, length(x)))
 profscores.gb2(x, shape1, scale, w=rep(1, length(x)))
 }
 \arguments{
- \item{x}{numeric; vector of data values. Should not contain missing values.}
+ \item{x}{numeric; vector of data values.}
  \item{shape1}{numeric; positive parameter.}
  \item{scale}{numeric; positive parameter.}
- \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1. Should not contain missing values.}
+ \item{w}{numeric; vector of weights. Must have the same length as \code{x}. By default \code{w} is a vector of 1.}
 
 }
 \details{

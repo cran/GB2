@@ -15,7 +15,7 @@ moment.cgb2(k, shape1, scale, shape2 ,shape3, pl0, pp, decomp="r")
 incompl.cgb2(x, k, shape1, scale, shape2, shape3, pl0, pp, decomp="r")
 }
 \arguments{
-  \item{x}{numeric; vector of quantiles. Should not contain missing values.}
+  \item{x}{numeric; vector of quantiles.}
   \item{k}{numeric; order of the moment.}
   \item{shape1,scale,shape2,shape3}{numeric; positive parameters of the GB2 distribution.}
   \item{pl0}{numeric; a vector of initial proportions defining the number of components and the weight of each component density in the decomposition. Sums to one.}
@@ -27,7 +27,7 @@ incompl.cgb2(x, k, shape1, scale, shape2, shape3, pl0, pp, decomp="r")
 \code{mkl.cgb2} returns a vector of the moments of the component densities, \code{moment.cgb2} returns the moment of order \code{k} and \code{incompl.cgb2} - the incomplete moment of order \code{k}.
 }
 \references{
- Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -63,5 +63,4 @@ incompl.cgb2(20000,1,af,bf,pf,qf,p0,p1,"l")
 #}
 }
 \keyword{distribution}
-\encoding{latin1}
 

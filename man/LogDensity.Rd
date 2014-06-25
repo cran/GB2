@@ -17,7 +17,7 @@ d2logf.gb2(xi, shape1, scale, shape2, shape3)
 }
 \arguments{
   \item{xi}{numeric; a data value.}
-  \item{x}{numeric; a vector of data values.  Should not contain missing values.}
+  \item{x}{numeric; a vector of data values.}
   \item{shape1}{numeric; positive parameter.}
   \item{scale}{numeric; positive parameter.}
   \item{shape2, shape3}{numeric; positive parameters of the Beta distribution.}

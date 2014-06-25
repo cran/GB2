@@ -17,8 +17,8 @@ ml.gb2(z, w=rep(1, length(z)), method=1, hess=FALSE)
 mlh.gb2(z, w=rep(1, length(z)), hs=rep(1, length(z)), method=1, hess = FALSE)
 }
 \arguments{
-  \item{z}{numeric; vector of data values. Should not contain missing values.}
-  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1. Should not contain missing values.}
+  \item{z}{numeric; vector of data values.}
+  \item{w}{numeric; vector of weights. Must have the same length as \code{z}. By default \code{w} is a vector of 1.}
   \item{hs}{numeric; vector of household sizes. Must have the same length as \code{z}. By default \code{hs} is a vector of 1.}
   \item{method}{numeric; the method to be used by \code{optim}. By default, code{method = }1 and the used method is BFGS. If \code{method = }2, method L-BFGS-B is used.}
   \item{hess}{logical; By default, \code{hess = FALSE}, the hessian matrix is not calculated.}
@@ -32,7 +32,7 @@ from package \code{stats}, based on the full log-likelihood calculated in a samp
 \code{ml.gb2} and \code{mlh.gb2} return a list with 1 argument: \code{opt1} for the output of the BFGS fit or \code{opt2} for the output of the L-BFGS fit. Further values are given by the values of \code{optim}.
 }
 \references{
- Graf, M., Nedyalkova, D., Münnich, R., Seger, J. and Zins, S. (2011)
+ Graf, M., Nedyalkova, D., Muennich, R., Seger, J. and Zins, S. (2011)
  AMELI Deliverable 2.1: Parametric Estimation of Income Distributions and
  Indicators of Poverty and Social Exclusion.
  \emph{Technical report}, AMELI-Project.
@@ -43,6 +43,7 @@ from package \code{stats}, based on the full log-likelihood calculated in a samp
 Monique Graf
 }
 \examples{
+\dontrun{
 library(laeken)
 data(eusilc)
 
@@ -82,6 +83,6 @@ indice <- round(main.emp(inc,w), digits=3)
 # Plots
 \dontrun{plotsML.gb2(inc,af,bf,pf,qf,w)}
 }
+}
 \keyword{distribution}
-\encoding{latin1}
 
