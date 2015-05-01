@@ -1,5 +1,5 @@
 \name{Moments}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{Moments}
 \alias{moment.gb2}
 \alias{incompl.gb2}

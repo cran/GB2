@@ -1,5 +1,5 @@
 \name{ProfLogLikelihood}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{ProfLogLikelihood}
 \alias{prof.gb2}
 \alias{proflogl.gb2}

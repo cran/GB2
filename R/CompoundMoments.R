@@ -15,17 +15,17 @@ return(Egb2*fac)
 }
 
 # Moment of order k, -ap < k < aq
-moment.cgb2 <- function(k, shape1, scale, shape2, shape3, pl0, pp, decomp="r"){
+moment.cgb2 <- function(k, shape1, scale, shape2, shape3, pl0, pl, decomp="r"){
 	pk <- shape2 + k/shape1
 	qk <- shape3 - k/shape1
 	if (qk <0) {print("moment does not exist: k >= aq", quote=FALSE);return(NA)}
 	if (pk <0) {print("moment does not exist: k <= -ap", quote=FALSE);return(NA)}	
 	Ek <- mkl.cgb2(k,shape1,scale,shape2,shape3,pl0,decomp)
-	return(sum(pp*Ek))
+	return(sum(pl*Ek))
 }
 
 # Incomplete moment of order k, -ap < k < aq
-incompl.cgb2 <- function(x, k, shape1, scale, shape2, shape3, pl0, pp, decomp="r"){
+incompl.cgb2 <- function(x, k, shape1, scale, shape2, shape3, pl0, pl, decomp="r"){
 	pk <- shape2+ k/shape1
 	qk <- shape3- k/shape1
 	if (qk <0) {print("moment does not exist: k >= aq", quote=FALSE);return(NA)}
@@ -43,8 +43,8 @@ incompl.cgb2 <- function(x, k, shape1, scale, shape2, shape3, pl0, pp, decomp="r
 	Fk <- pl.cgb2(x,shape1,scale,pk,qk,ppl0,decomp) 
 	Ek <- mkl.cgb2(k,shape1,scale,shape2,shape3,pl0,decomp)
 	Mk <- Ek*Fk
-	num <- sum(pp*Mk)
-	denom <- sum(pp*Ek)
+	num <- sum(pl*Mk)
+	denom <- sum(pl*Ek)
 	return(num/denom)
 }
 

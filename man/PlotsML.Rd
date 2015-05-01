@@ -1,5 +1,5 @@
 \name{PlotsML}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{PlotsML}
 \alias{plotsML.gb2}
 \alias{saveplot}
@@ -24,7 +24,7 @@ saveplot(name, pathout)
   \item{pathout}{string; the path of the folder or device where the plot will be saved.}
 }
 \details{
-The used kernel is "Epanechnikov" (see \code{\link{plot.density}}).  
+The used kernel is "Epanechnikov" (see \code{\link{plot}}).  
 }
 \author{
 Monique Graf and Desislava Nedyalkova

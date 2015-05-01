@@ -1,5 +1,5 @@
 \name{Varest}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{Varest}
 \alias{varscore.gb2}
 \alias{vepar.gb2}
@@ -146,85 +146,58 @@ DVCMP2 <- vepar.gb2(heqInc, DV2, af, bf, pf, qf, hw, hs)[[1]]
 \dontrun{diag(DV2)/diag(VSC)}
 
 # Standard errors of af, bf, pf and qf
-se.par <- rep(0,4)
-for (i in 1:4){
-se.par[i] <- sqrt(VCMP[i,i])
-}
-sed1.par <- rep(0,4)
-for (i in 1:4){
-sed1.par[i] <- sqrt(DVCMP1[i,i])
-}
-sed2.par <- rep(0,4)
-for (i in 1:4){
-sed2.par[i] <- sqrt(DVCMP2[i,i])
-}
+se.par <- sqrt(diag(VCMP))
+sed1.par <- sqrt(diag(DVCMP1))
+sed2.par <- sqrt(diag(DVCMP2))
 
 # Estimated variance-covariance matrix of the indicators (VCMI)
-VCMI <- veind.gb2(heqInc, VCMP, af, bf, pf, qf, hw, hs)
-DVCMI1 <- veind.gb2(heqInc, DVCMP1, af, bf, pf, qf, hw, hs)
-DVCMI2 <- veind.gb2(heqInc, DVCMP2, af, bf, pf, qf, hw, hs)
+VCMI <- veind.gb2(VCMP, af, bf, pf, qf) 
+DVCMI1 <- veind.gb2(DVCMP1, af, bf, pf, qf)
+DVCMI2 <- veind.gb2(DVCMP2, af, bf, pf, qf)
 
 # Standard errors and confidence intervals
-inCI <- rep(0,6) # empirical indicator in CI
-varest.ind <- rep(0,6)
-se.ind <- rep(0,6)
-lci.ind <- rep(0,6)
-uci.ind <- rep(0,6)
-for (i in 1:6)
-{
-varest.ind[i] <- VCMI[i,i]
-se.ind[i] <- sqrt(varest.ind[i])
-lci.ind[i] <- gb2.ind[i] - 1.96*se.ind[i]
-uci.ind[i] <- gb2.ind[i] + 1.96*se.ind[i]
-if (lci.ind[i] <= emp.ind[i] & emp.ind[i] <= uci.ind[i]) {inCI[i] = 1}
-}
+varest.ind <- diag(VCMI)
+se.ind <- sqrt(varest.ind)
+lci.ind <- gb2.ind - 1.96*se.ind
+uci.ind <- gb2.ind + 1.96*se.ind
+inCI <- as.numeric(lci.ind <= emp.ind & emp.ind <= uci.ind)
 
-#under the sampling design sdotr
-inCId1 <- rep(0,6)
-varestd1.ind <- rep(0,6)
-sed1.ind <- rep(0,6)
-lcid1.ind <- rep(0,6)
-ucid1.ind <- rep(0,6)
-for (i in 1:6)
-{
-varestd1.ind[i] <- DVCMI1[i,i]
-sed1.ind[i] <- sqrt(varestd1.ind[i])
-lcid1.ind[i] <- gb2.ind[i] - 1.96*sed1.ind[i]
-ucid1.ind[i] <- gb2.ind[i] + 1.96*sed1.ind[i]
-if (lcid1.ind[i] <= emp.ind[i] & emp.ind[i] <= ucid1.ind[i]) {inCId1[i] = 1}
-}
+# under the sampling design sdotr
+
+varestd1.ind <- diag(DVCMI1)
+sed1.ind <- sqrt(varestd1.ind)
+lcid1.ind <- gb2.ind - 1.96*sed1.ind
+ucid1.ind <- gb2.ind + 1.96*sed1.ind
+inCId1 <- as.numeric(lcid1.ind <= emp.ind & emp.ind <= ucid1.ind)
 
 #under the sampling design sddtr
-inCId2 <- rep(0,6)
-varestd2.ind <- rep(0,6)
-sed2.ind <- rep(0,6)
-lcid2.ind <- rep(0,6)
-ucid2.ind <- rep(0,6)
-for (i in 1:6)
-{
-varestd2.ind[i] <- DVCMI2[i,i]
-sed2.ind[i] <- sqrt(varestd2.ind[i])
-lcid2.ind[i] <- gb2.ind[i] - 1.96*sed2.ind[i]
-ucid2.ind[i] <- gb2.ind[i] + 1.96*sed2.ind[i]
-if (lcid2.ind[i] <= emp.ind[i] & emp.ind[i] <= ucid2.ind[i]) {inCId2[i] = 1}
-}
+
+varestd2.ind <- diag(DVCMI2)
+sed2.ind <- sqrt(varestd2.ind)
+lcid2.ind <- gb2.ind - 1.96*sed2.ind
+ucid2.ind <- gb2.ind + 1.96*sed2.ind
+inCId2 <- as.numeric(lcid2.ind <= emp.ind & emp.ind <= ucid2.ind)
 
 #coefficients of variation .par (parameters), .ind (indicators)
 cv.par <- se.par/gb2.par
-cv.ind <- se.ind/gb2.ind
+names(cv.par) <- c("am","bm","pm","qm")
 cvd1.par <- sed1.par/gb2.par
-cvd1.ind <- sed1.ind/gb2.ind
+names(cvd1.par) <- c("am","bm","pm","qm")
 cvd2.par <- sed2.par/gb2.par
+names(cvd2.par) <- c("am","bm","pm","qm")
+
+cv.ind <- se.ind/gb2.ind
+cvd1.ind <- sed1.ind/gb2.ind
 cvd2.ind <- sed2.ind/gb2.ind
 
 
 #results 
 res <- data.frame(am = af, bm = bf, pm = pf, qm = qf, lik = mlik,
   median = gb2.ind[[1]], mean = gb2.ind[[2]], ARPR = gb2.ind[[3]], 
-  RMPG = gb2.ind[[4]], QSR = gb2.ind[[5]], Gini = gb2.ind[[6]],
-  emedian = emp.ind[[1]], emean = emp.ind[[2]], eARPR = emp.ind[[3]],
-  eRMPG = emp.ind[[4]], eQSR = emp.ind[[5]], eGini = emp.ind[[6]],
-  cva = cv.par[1], cvb = cv.par[2], cvp= cv.par[3], cvq = cv.par[4], 
+    RMPG = gb2.ind[[4]], QSR = gb2.ind[[5]], Gini = gb2.ind[[6]],
+  emedian = emp.ind[[1]], emean = emp.ind[[2]], eARPR = emp.ind[[3]], 
+    eRMPG = emp.ind[[4]], eQSR = emp.ind[[5]], eGini = emp.ind[[6]],
+  cva = cv.par[1], cvb = cv.par[2], cvp= cv.par[3], cvq = cv.par[4],
   cvd1a = cvd1.par[1], cvd1b = cvd1.par[2], cvd1p= cvd1.par[3], cvd1q = cvd1.par[4],
   cvd2a = cvd2.par[1], cvd2b = cvd2.par[2], cvd2p= cvd2.par[3], cvd2q = cvd2.par[4],
   cvmed = cv.ind[[1]], cvmean = cv.ind[[2]], cvARPR = cv.ind[[3]], 
@@ -234,6 +207,15 @@ res <- data.frame(am = af, bm = bf, pm = pf, qm = qf, lik = mlik,
   cvd2med = cvd2.ind[[1]], cvd2mean = cvd2.ind[[2]], cvd2ARPR = cvd2.ind[[3]], 
   cvd2RMPG = cvd2.ind[[4]], cvd2QSR = cvd2.ind[[5]], cvd2Gini = cvd2.ind[[6]])
 
+  res <- list(parameters = data.frame(am = af, bm = bf, pm = pf, qm = qf, lik = mlik),
+              cv.parameters.naive = cv.par,
+              cv.parameters.design1 = cvd1.par,
+              cv.parameters.design2 = cvd2.par,
+		  GB2.indicators = gb2.ind,
+              emp.indicators = emp.ind,
+              cv.indicators.naive = cv.ind,
+              cv.indicators.design1 = cvd1.ind,
+              cv.indicators.design2 = cvd2.ind)
 res
 \dontrun{inCI}
 }

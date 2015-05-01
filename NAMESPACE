@@ -1,8 +1,9 @@
 import(laeken)
 import(stats)
+import(survey)
 
 importFrom(hypergeo, isgood, genhypergeo_series)
-importFrom(numDeriv, grad)
+importFrom(numDeriv, grad, jacobian)
 importFrom(cubature, adaptIntegrate)
 
 export(
@@ -71,16 +72,33 @@ export(
  arpr.cgb2,
  rmpg.cgb2,
  qsr.cgb2,
+ main.cgb2,
  vofp.cgb2,
  pofv.cgb2,
  logl.cgb2,
+ scoreU.cgb2,
  scores.cgb2,
  ml.cgb2,
+ dplot.cgb2,
+ varscore.cgb2,
+ desvar.cgb2,
+ hess.cgb2,
+ vepar.cgb2,
+ derivind.cgb2,
+ veind.cgb2,
  pkl.cavgb2,
  lambda0.cavgb2,
  logl.cavgb2,
  scores.cavgb2,
- ml.cavgb2 
+ scoreU.cavgb2,
+ scorez.cavgb2,
+ ml.cavgb2,
+ dplot.cavgb2,
+ varscore.cavgb2,
+ desvar.cavgb2,
+ hess.cavgb2,
+ vepar.cavgb2,
+ veind.cavgb2
  )
 
 

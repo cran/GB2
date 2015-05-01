@@ -1,5 +1,5 @@
 \name{LogLikelihood}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{LogLikelihood}
 \alias{loglp.gb2}
 \alias{loglh.gb2}

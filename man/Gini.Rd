@@ -1,5 +1,5 @@
 \name{Gini}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{Gini}
 \alias{gini.gb2}
 \alias{gini.b2}

@@ -1,5 +1,5 @@
 \name{Compound}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{Compound}
 \alias{fg.cgb2}
 \alias{dl.cgb2}
@@ -18,9 +18,10 @@ Calculation of the compound density function and the compound cumulative distrib
 fg.cgb2(x, shape1, scale, shape2, shape3, pl0, decomp="r")
 dl.cgb2(x, shape1, scale, shape2, shape3, pl0, decomp="r") 
 pl.cgb2(y, shape1, scale, shape2, shape3, pl0, decomp="r", tol=1e-05)
-dcgb2(x, shape1, scale, shape2, shape3, pl0, pp, decomp="r")
-pcgb2(y, shape1, scale, shape2, shape3, pl0, pp, decomp="r")
-prcgb2(y1, y2, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-08, debug=FALSE)
+dcgb2(x, shape1, scale, shape2, shape3, pl0, pl, decomp="r")
+pcgb2(y, shape1, scale, shape2, shape3, pl0, pl, decomp="r")
+prcgb2(y1, y2, shape1, scale, shape2, shape3, pl0, pl, decomp="r", tol=1e-08, 
+debug=FALSE)
 }
 \arguments{
   \item{x}{numeric; can be a vector. The value(s) at which the compound density and the component densities are calculated, \code{x} is positive.}
@@ -28,7 +29,7 @@ prcgb2(y1, y2, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-08, de
   \item{y1, y2}{numeric values.}
   \item{shape1, scale ,shape2, shape3}{numeric; positive parameters of the GB2 distribution.}
   \item{pl0}{numeric; a vector of initial proportions defining the number of components and the weight of each component density in the decomposition. Sums to one.}
-  \item{pp}{numeric; a vector of fitted proportions. Sums to one. If \code{pp} is equal to \code{pl0}, we obtain the GB2 distribution.}
+  \item{pl}{numeric; a vector of fitted proportions. Sums to one. If \code{pl} is equal to \code{pl0}, we obtain the GB2 distribution.}
   \item{decomp}{string; specifying if the decomposition of the GB2 is done with respect to the right tail ("r") or the left tail ("l") of the distribution.
    By default, \code{decomp} = "r" - right tail decomposition.}
   \item{debug}{logical; By default, \code{debug = FALSE}.}

@@ -1,5 +1,5 @@
 \name{MLfitGB2}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{MLfitGB2}
 \alias{main.emp}
 \alias{mlfit.gb2}

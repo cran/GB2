@@ -1,5 +1,5 @@
 \name{MLprofGB2}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{MLprofGB2}
 \alias{profml.gb2}
 \title{

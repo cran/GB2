@@ -1,5 +1,5 @@
 \name{Contprof}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{Contprof}
 \alias{contprof.gb2}
 \title{

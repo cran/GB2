@@ -1,5 +1,5 @@
 \name{CompoundMoments}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{mkl.cgb2}
 \alias{moment.cgb2}
 \alias{incompl.cgb2}
@@ -11,15 +11,15 @@ These functions calculate the moment of order \code{k} and incomplete moment of 
 }
 \usage{
 mkl.cgb2(k, shape1, scale, shape2, shape3, pl0, decomp="r")
-moment.cgb2(k, shape1, scale, shape2 ,shape3, pl0, pp, decomp="r")
-incompl.cgb2(x, k, shape1, scale, shape2, shape3, pl0, pp, decomp="r")
+moment.cgb2(k, shape1, scale, shape2 ,shape3, pl0, pl, decomp="r")
+incompl.cgb2(x, k, shape1, scale, shape2, shape3, pl0, pl, decomp="r")
 }
 \arguments{
   \item{x}{numeric; vector of quantiles.}
   \item{k}{numeric; order of the moment.}
   \item{shape1,scale,shape2,shape3}{numeric; positive parameters of the GB2 distribution.}
   \item{pl0}{numeric; a vector of initial proportions defining the number of components and the weight of each component density in the decomposition. Sums to one.}
-  \item{pp}{numeric; a vector of fitted proportions. Sums to one. If \eqn{pp=pl0} we obtain the GB2 distribution.}
+  \item{pl}{numeric; a vector of mixture probabilities. Sums to one. If \eqn{pl=pl0} we obtain the GB2 distribution.}
   \item{decomp}{string; specifying if the decomposition of the GB2 is done with respect to the right tail ("r") or the left tail ("l") of the distribution.
    By default, \code{decomp} = "r" - right tail decomposition.}
 }

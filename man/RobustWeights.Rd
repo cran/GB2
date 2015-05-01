@@ -1,5 +1,5 @@
 \name{RobustWeights}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{RobustWeights}
 \alias{robwts}
 \title{

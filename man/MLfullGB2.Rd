@@ -1,5 +1,5 @@
 \name{MLfullGB2}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{MLfullGB2}
 \alias{ml.gb2}
 \alias{mlh.gb2}
@@ -74,14 +74,14 @@ qf <- fitf$par[4]
 flik <- fitf$value
 
 # If we want to compare the indicators
-\dontrun{
+
 # GB2 indicators
 indicf <- round(main.gb2(0.6,af,bf,pf,qf), digits=3)
 # Empirical indicators
 indice <- round(main.emp(inc,w), digits=3)
-}
+
 # Plots
-\dontrun{plotsML.gb2(inc,af,bf,pf,qf,w)}
+plotsML.gb2(inc,af,bf,pf,qf,w)
 }
 }
 \keyword{distribution}

@@ -1,5 +1,5 @@
 \name{NonlinearFit}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{NonlinearFit}
 \alias{nlsfit.gb2}
 \title{

@@ -56,31 +56,31 @@ pl.cgb2 <- function(y, shape1, scale, shape2, shape3, pl0, decomp="r", tol=1e-05
 }
 
 # Density
-dcgb2 <- function(x, shape1, scale, shape2, shape3, pl0, pp, decomp="r"){
+dcgb2 <- function(x, shape1, scale, shape2, shape3, pl0, pl, decomp="r"){
 # x: value at which the density is evaluated, could be a vector or a scalar
 # shape1,scale,shape2,shape3: GB2 parameters
 # vector pl0 (sums to 1) of length L, the initial proportions
-# vector pp gives the fitted proportions of the L components
-# if pp=pl0 the function returns the GB2 density
+# vector pl gives the fitted proportions of the L components
+# if pl=pl0 the function returns the GB2 density
         ncomp <- length(pl0)
         v <- (x<Inf)        
         fl <- matrix(rep(0, times=length(x)*ncomp), ncol=ncomp)
 	    fl[v,] <- dl.cgb2(x[v],shape1,scale,shape2,shape3,pl0,decomp)
 	    vv <- (x==Inf)          #new 7.06.12
         fl[vv,] <- 0           #new 7.06.12
-        compd <- fl%*%pp
+        compd <- fl%*%pl
         dimnames(compd)[[2]] <- list("compound")
         return(compd)
 }
 
 
 # Cumulative distribution function
-pcgb2 <- function(y, shape1, scale, shape2, shape3, pl0, pp, decomp="r"){
+pcgb2 <- function(y, shape1, scale, shape2, shape3, pl0, pl, decomp="r"){
 n <- length(y)
 compp <- matrix(rep(1,n),ncol=1)
 v <- (y<Inf)
 if (length(y[v])!=0){
-integrand <- function(x) dcgb2(x,shape1,scale,shape2,shape3,pl0,pp,decomp)
+integrand <- function(x) dcgb2(x,shape1,scale,shape2,shape3,pl0,pl,decomp)
 fun <- function(x) adaptIntegrate(integrand,0,x,tol=1e-08)$integral
 compp[v,1] <- apply(as.matrix(y[v]),1,fun)
 }
@@ -89,10 +89,10 @@ compp[vv,] <- 1
 return(compp)
 }
 
-prcgb2 <- function(y1, y2, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-08, debug=FALSE){
+prcgb2 <- function(y1, y2, shape1, scale, shape2, shape3, pl0, pl, decomp="r", tol=1e-08, debug=FALSE){
 # Given  2 arguments y1 and y2, returns the probability that the GB2 r.v. Y is P(min(y1,y2) < Y < max(y1,y2))
 
-        integrand <- function(x) dcgb2(x,shape1,scale,shape2,shape3,pl0,pp,decomp)
+        integrand <- function(x) dcgb2(x,shape1,scale,shape2,shape3,pl0,pl,decomp)
         M1 <- max(y1,y2)
         m1 <- min(y1,y2)
         if (m1 == M1) return(0)

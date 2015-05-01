@@ -1,5 +1,5 @@
 \name{Thomae}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{ULg}
 \alias{combiopt}
 \alias{Thomae}

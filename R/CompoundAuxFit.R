@@ -1,6 +1,4 @@
 pkl.cavgb2 <- function(z,lambda){
-# z : (N x I) - matrix of auxiliary variables
-# lambda : (I x L-1)- matrix of parameters
   L <- dim(lambda)[2]+1
   pkl <- exp(z%*%lambda)
   ck <- apply(pkl,1,sum)+1
@@ -25,7 +23,6 @@ lambda0.cavgb2 <- function(pl0, z, w=rep(1, dim(z)[1])){
 return(lambda0) 
 }
 
-# loglikelihood with auxiliary variables
 logl.cavgb2 <- function(fac, z, lambda, w=rep(1, dim(fac)[1])){
   sw <- sum(w)
   pkL <- pkl.cavgb2(z,lambda)
@@ -35,7 +32,6 @@ logl.cavgb2 <- function(fac, z, lambda, w=rep(1, dim(fac)[1])){
 return(logL)
 }
 
-# scores with auxiliary variables
 scores.cavgb2 <- function(fac, z, lambda, w=rep(1, dim(fac)[1])){
 # fac    : (N x L) - matrix of Gamma factors
 # z      : (N x I) - matrix of auxiliary variables
@@ -54,29 +50,28 @@ scores.cavgb2 <- function(fac, z, lambda, w=rep(1, dim(fac)[1])){
 return(dlogL)
 }
 
-# fit
-ml.cavgb2 <- function(fac, z, lambda0, w=rep(1, dim(fac)[1]), maxiter=100){
 
-  dl <- dim(lambda0)
-  lambda0vec <- as.vector(lambda0)
-
-  fn <- function(lambdavec, fac, z, w){
-    lambda <- matrix(lambdavec, nrow = dl[1], ncol = dl[2])
-	return(-logl.cavgb2(fac, z, lambda, w))
-  }
-
-  gr <- function(lambdavec, fac, z, w){
-      lambda <- matrix(lambdavec, nrow=dl[1], ncol=dl[2])
-      sc <- -scores.cavgb2(fac, z, lambda, w)
-      sctr <- t(sc) 
-      asvecsc <- as.vector(sctr)   
-      return(asvecsc)
-  }
-
-  opt <- optim(lambda0vec, fn, gr, fac, z, w, method="BFGS", control=list(maxit=maxiter, fnscale=length(w)), hessian=FALSE)
-  lambdafit <- opt$par
-  lambdafitm <- matrix(lambdafit, nrow=dl[1], ncol=dl[2])
-  colnames(lambdafitm) <-  paste("comp",1:dl[2],sep="")
-  rownames(lambdafitm) <- colnames(z)
-return(list(lambdafitm,opt))
+ml.cavgb2 <- function (fac, z, lambda0, w = rep(1, dim(fac)[1]), maxiter = 100, fnscale=length(w)) 
+{
+    dl <- dim(lambda0)
+    lambda0vec <- as.vector(lambda0)
+    fn <- function(lambdavec, fac, z, w) {
+        lambda <- matrix(lambdavec, nrow = dl[1], ncol = dl[2])
+        return(-logl.cavgb2(fac, z, lambda, w))
+    }
+    gr <- function(lambdavec, fac, z, w) {
+        lambda <- matrix(lambdavec, nrow = dl[1], ncol = dl[2])
+        sc <- -scores.cavgb2(fac, z, lambda, w)
+        sctr <- t(sc)
+        asvecsc <- as.vector(sctr)
+        return(asvecsc)
+    }
+    opt <- optim(lambda0vec, fn, gr, fac, z, w, method = "BFGS", 
+        control = list(maxit = maxiter, fnscale = fnscale), 
+        hessian = FALSE)
+    lambdafit <- opt$par
+    lambdafitm <- matrix(lambdafit, nrow = dl[1], ncol = dl[2])
+    colnames(lambdafitm) <- paste("comp", 1:dl[2], sep = "")
+    rownames(lambdafitm) <- colnames(z)
+    return(list(lambdafitm, opt))
 }

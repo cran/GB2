@@ -1,5 +1,5 @@
 \name{Fisk}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{Fisk}
 \alias{fisk}
 \alias{fiskh}

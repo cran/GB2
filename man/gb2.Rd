@@ -1,5 +1,5 @@
 \name{gb2}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{gb2}
 \alias{dgb2}
 \alias{pgb2}

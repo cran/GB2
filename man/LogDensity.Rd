@@ -1,5 +1,5 @@
 \name{LogDensity}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{LogDensity}
 \alias{logf.gb2}
 \alias{dlogf.gb2}

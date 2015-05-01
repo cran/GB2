@@ -1,5 +1,5 @@
 \name{CompoundQuantiles}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{CompoundQuantiles}
 \alias{qcgb2}
 \alias{rcgb2}
@@ -10,9 +10,9 @@ Quantiles and random generation of the Compound Distribution based on the GB2
 Calculation of the quantiles of a compound GB2 random variable. Random generation of compound GB2 variables.
 }
 \usage{
-qcgb2(prob, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-08, ff=1.5, 
+qcgb2(prob, shape1, scale, shape2, shape3, pl0, pl, decomp="r", tol=1e-08, ff=1.5, 
 debug=FALSE, maxiter=50)
-rcgb2(n, shape1, scale, shape2, shape3, pl0, pp, decomp="r", tol=1e-02, maxiter=100,
+rcgb2(n, shape1, scale, shape2, shape3, pl0, pl, decomp="r", tol=1e-02, maxiter=100,
 debug = FALSE)
 }
 \arguments{
@@ -20,7 +20,7 @@ debug = FALSE)
   \item{shape1,scale,shape2,shape3}{numeric; positive parameters of the GB2 distribution.}
   \item{n}{numeric; number of observations. If \code{length(n) > 1}, the length is taken to be the number required.}
   \item{pl0}{numeric; a vector of initial proportions defining the number of components and the weight of each component density in the decomposition. Sums to one.}
-  \item{pp}{numeric; a vector of fitted proportions. Sums to one. If \eqn{pp=pl0} we obtain the GB2 distribution.}
+  \item{pl}{numeric; a vector of mixture probabilities. Sums to one. If \eqn{pl=pl0} we obtain the GB2 distribution.}
   \item{decomp}{string; specifying if the decomposition of the GB2 is done with respect to the right tail ("r") or the left tail ("l") of the distribution.
    By default, \code{decomp} = "r" - right tail decomposition.}
   \item{ff}{numeric; a tuning parameter.}
