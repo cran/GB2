@@ -2,6 +2,10 @@ import(laeken)
 import(stats)
 import(survey)
 
+importFrom("grDevices", "dev.print", "dev.set", "heat.colors", "pdf")
+importFrom("graphics", "abline", "box", "contour", "curve", "image",
+           "legend", "lines", "mtext", "par", "text")
+
 importFrom(hypergeo, isgood, genhypergeo_series)
 importFrom(numDeriv, grad, jacobian)
 importFrom(cubature, adaptIntegrate)

@@ -1,5 +1,5 @@
-09df17dc6c15be5a0f838574d88e3984 *DESCRIPTION
-a4c2554d627cff72d2a43226c533888a *NAMESPACE
+f2876988d68db718ba012d3de96fedcc *DESCRIPTION
+23d977f4628397273f685b946c30aa43 *NAMESPACE
 882a52e2c08e5e67f227077e57b1a8b8 *R/Compound.R
 7970de4cdfcaa99c7eca9ec854fba5ec *R/CompoundAuxDensPlot.r
 9a939d9d90eb41890105c5ff7837b22e *R/CompoundAuxFit.R
@@ -42,8 +42,8 @@ cce1dc12a2037501c7f315bdae87a458 *man/CompoundQuantiles.Rd
 03e2b4aa1a7618c0dc6e2b2d303471cd *man/Contprof.Rd
 8e6b0132774b1118cb2c12ed630e8514 *man/Fisk.Rd
 2f7b1ef6b42a65a845fcffb2483ade36 *man/Gini.Rd
-80c3e24a83ff639b1e5eb9777fca5b8b *man/Indicators.Rd
-ec0dbe44a290c46c4b64238d6ece0f4e *man/LogDensity.Rd
+cafdc9d39d2861d40184ff35d132daf5 *man/Indicators.Rd
+dfcca27494fa54a7fbf632335e2fdd66 *man/LogDensity.Rd
 26a34084d5f3f053c815fc61d3233b79 *man/LogLikelihood.Rd
 18422335264d42b8eca33ace5ce87d48 *man/MLfitGB2.Rd
 fafd360b1aac3b0703e1617f19abecac *man/MLfullGB2.Rd

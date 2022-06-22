@@ -34,7 +34,7 @@ Depending on the input \code{logf.gb2} gives the log density for a single value 
 \references{
 Brazauskas, V. (2002)
  Fisher information matrix for the Feller-Pareto distribution.
- \emph{Statistics \& Probability Letters}, \bold{59}, 159--167.
+ \emph{Statistics & Probability Letters}, \bold{59}, 159--167.
 }
 \author{
 Desislava Nedyalkova

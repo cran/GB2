@@ -62,7 +62,7 @@ calculates the QSR. \code{main.gb2} returns a vector containing the median of th
 \code{main2.gb2} produces the same output as \code{main.gb2}.
 }
 \references{
-\url{http://ec.europa.eu/employment_social/spsi/docs/social_inclusion/2008/indicators_update2008_en.pdf}
+\url{https://ec.europa.eu/social/main.jsp?langId=en&catId=750}
 }
 \author{
 Monique Graf
